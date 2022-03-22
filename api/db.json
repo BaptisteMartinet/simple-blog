@@ -16,5 +16,14 @@
       "created_at": 1647968229991,
       "updated_at": 1647968229991
     }
+  ],
+  "users": [
+    {
+      "id": 0,
+      "fullName": "Baptiste Martinet",
+      "email": "baptiste.marti@outlook.com",
+      "password": "",
+      "isAdmin": true
+    }
   ]
 }
