@@ -27,7 +27,8 @@ app.get('/post', (req, res) => {
     return res.status(400).send(`Invalid post id`);
   const post = DB.posts.find(post => (post.id === postId));
   if (!post)
-    return res.status(404).send(`Post#${postId} does not exist.`)
+    return res.status(404).send(`Post#${postId} does not exist.`);
+  post.views += 1;
   return res.status(200).json(post);
 });
 
@@ -41,6 +42,7 @@ app.post('/post', auth, (req, res) => {
     userId: req.jwtPayload.userId,
     title,
     body,
+    views: 0,
     created_at: currentDate,
     updated_at: currentDate,
   };
