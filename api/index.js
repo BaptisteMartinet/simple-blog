@@ -32,15 +32,13 @@ app.get('/post', (req, res) => {
 });
 
 app.post('/post', auth, (req, res) => {
-  const { title, body,  } = req.body;
+  const { title, body } = req.body;
   if (!title || !body)
     return res.status(400).send('Invalid parameters');
-  const postId = uuidv4();
-  const userId = req.jwtPayload.userId;
   const currentDate = new Date().getTime();
   const newPost = {
-    id: postId,
-    userId,
+    id: uuidv4(),
+    userId: req.jwtPayload.userId,
     title,
     body,
     created_at: currentDate,
