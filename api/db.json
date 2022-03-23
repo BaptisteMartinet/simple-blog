@@ -1,29 +1,29 @@
 {
   "posts": [
     {
-      "id": 0,
+      "id": "3e35feed-44fc-4183-9023-82baa1ca2cc4",
+      "userId": "be880630-f17d-4f62-8fc2-196bd2a14dbd",
       "title": "First post",
       "body": "coucou",
-      "cover_picture_url": null,
       "created_at": 1647966654932,
       "updated_at": 1647966654932
     },
     {
-      "id": 1,
+      "id": "815c9a7a-40ed-4508-b23b-52bc48c0baf9",
+      "userId": "be880630-f17d-4f62-8fc2-196bd2a14dbd",
       "title": "Second post",
       "body": "hello",
-      "cover_picture_url": null,
       "created_at": 1647968229991,
       "updated_at": 1647968229991
     }
   ],
   "users": [
     {
-      "id": 0,
+      "id": "be880630-f17d-4f62-8fc2-196bd2a14dbd",
       "fullName": "Baptiste Martinet",
-      "email": "baptiste.marti@outlook.com",
-      "password": "",
-      "isAdmin": true
+      "email": "baptiste.martinet@student.griffith.ie",
+      "password": "$2b$10$fl9QAX/CKZ3ZlWe/uDmMCOtPdbV0kKVLleh/yD0e1XaFqkh37F0eW",
+      "token": null
     }
   ]
 }
