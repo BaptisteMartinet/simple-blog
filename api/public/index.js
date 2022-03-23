@@ -24,8 +24,8 @@ function timeSince(date) {
   const data = await res.json();
 
   const postsContainer = document.querySelector('.postsContainer');
-  var fragment = document.createDocumentFragment();
   for (post of data) {
+    var fragment = document.createDocumentFragment();
     const li = document.createElement('li');
     fragment.appendChild(li);
 
@@ -69,6 +69,7 @@ function timeSince(date) {
     const user = await userRes.json();
     questionUserParagraphe.textContent = `${user.fullName} asked ${timeSince(post.created_at)} ago`;
     questionUser.appendChild(questionUserParagraphe);
+
+    postsContainer.append(fragment);
   }
-  postsContainer.append(fragment);
 })();
