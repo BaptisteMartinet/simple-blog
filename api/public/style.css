@@ -1,4 +1,6 @@
 .navBar {
+  position: fixed;
+  background-color: white;
   width: 100%;
   height: auto;
   border-top: 3px solid orange;
@@ -7,10 +9,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  top: 0;
 }
 
 .navBar > .searchBox {
-  margin: 0 3% 0 3%;
+  margin: 0 3%;
   width: 35%;
 }
 
