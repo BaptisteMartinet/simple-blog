@@ -22,8 +22,8 @@ app.get('/posts', (req, res) => {
 });
 
 app.get('/post', (req, res) => {
-  const postId = parseInt(req.query.id);
-  if (!postId && postId !== 0)
+  const { id: postId } = req.query;
+  if (!postId)
     return res.status(400).send(`Invalid post id`);
   const post = DB.posts.find(post => (post.id === postId));
   if (!post)
