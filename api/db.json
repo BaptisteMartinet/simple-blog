@@ -6,6 +6,7 @@
       "title": "First post",
       "body": "coucou",
       "views": 0,
+      "answers": 0,
       "created_at": 1647966654932,
       "updated_at": 1647966654932
     },
@@ -15,6 +16,7 @@
       "title": "Second post",
       "body": "hello",
       "views": 0,
+      "answers": 0,
       "created_at": 1647968229991,
       "updated_at": 1647968229991
     }
