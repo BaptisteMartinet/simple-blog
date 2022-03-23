@@ -76,6 +76,19 @@ app.get('/users', (req, res) => {
   res.status(200).json(DB.users);
 });
 
+app.get('/user', (req, res) => {
+  const { id: userId } = req.query;
+  if (!userId)
+    return res.status(400).send('Invalid id.');
+  const user = DB.users.find(u => (u.id === userId));
+  if (!user)
+    return res.status(404).send(`User#${userId} not found.`);
+  const trimmedUser = { ...user };
+  delete trimmedUser.token;
+  delete trimmedUser.password;
+  return res.status(200).json(trimmedUser);
+});
+
 function ensureUserArgs(args)
 {
   const { fullName, email, password } = args;
