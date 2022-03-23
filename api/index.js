@@ -48,7 +48,23 @@ app.post('/post', auth, (req, res) => {
   res.status(200).send('Post succesfully created.');
 });
 
-// TODO add patch endpoint to update posts
+app.patch('/post', auth, (req, res) => {
+  const { id: postId } = req.query;
+  if (!postId)
+    return res.status(400).send('Invalid id.');
+  const post = DB.posts.find(p => (p.id === postId));
+  if (!post)
+    return res.status(404).send(`Post#${postId} does not exists`);
+  if (post.userId != req.jwtPayload.userId)
+    return res.status(400).send(`You do not have the rights to update Post#${postId}`)
+  const { title, body } = req.body;
+  if (title)
+    post.title = title;
+  if (body)
+    post.body = body;
+  post.updated_at = new Date().getTime();
+  res.status(200).json(post);
+});
 
 /* USERS */
 
