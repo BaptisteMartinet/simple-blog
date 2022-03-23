@@ -38,7 +38,7 @@ app.post('/post', auth, (req, res) => {
   const { title, body } = req.body;
   if (!title || !body)
     return res.status(400).send('Invalid parameters');
-  const currentDate = new Date().getTime();
+  const currentDate = Date.now();
   const newPost = {
     id: uuidv4(),
     userId: req.jwtPayload.userId,
@@ -66,7 +66,7 @@ app.patch('/post', auth, (req, res) => {
     post.title = title;
   if (body)
     post.body = body;
-  post.updated_at = new Date().getTime();
+  post.updated_at = Date.now();
   res.status(200).json(post);
 });
 
