@@ -72,7 +72,7 @@ app.get('/users', (req, res) => {
   res.status(200).json(DB.users);
 });
 
-function checkUserArgs(args)
+function ensureUserArgs(args)
 {
   const { fullName, email, password } = args;
   if (!fullName || !email || !password)
@@ -84,22 +84,19 @@ function checkUserArgs(args)
 app.post('/register', (req, res) => {
   const args = req.body;
   try {
-    checkUserArgs(args);
+    ensureUserArgs(args);
   } catch(e) {
     return res.status(400).send(e.message);
   }
-  const { email, password, ...rest } = args;
+  const { fullName, email, password } = args;
   if (DB.users.some(user => (user.email === email)))
     return res.status(409).send('User already exists.');
-  const userId = uuidv4();
-  const jwtToken = jwt.sign({ userId }, process.env.JWT_SECRET_KEY, { expiresIn: "2h" });
-  const encryptedPassword = bcrypt.hashSync(password, 10);
   const createdUser = {
-    id: userId,
+    id: uuidv4(),
+    fullName,
     email,
-    password: encryptedPassword,
-    token: jwtToken,
-    ...rest,
+    password: bcrypt.hashSync(password, 10),
+    token: null,
   };
   DB.users.push(createdUser);
   res.status(201).send('Account successfully created');
