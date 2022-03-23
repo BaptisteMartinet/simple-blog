@@ -23,6 +23,42 @@
   width: 100%;
 }
 
+.postsContainer {
+  border: 2px solid #d6d9dc;
+  list-style: none;
+  padding: 0;
+  margin: 2em 0;
+}
+
+.postsContainer > li > .question {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: .5em;
+  border-bottom: 1px solid #d6d9dc;;
+}
+
+.postsContainer > li > .question > .question-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  width: 15%;
+}
+
+.postsContainer > li > .question > .question-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2em;
+  width: 100%;
+}
+
+.postsContainer > li > .question > .question-summary > h1 {
+  max-width: 22em;
+}
+
 .footer {
   width: 100%;
   height: 30vh;
