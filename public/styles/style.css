@@ -1,8 +1,32 @@
+.ask-container {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 1em;
+}
+
+.ask-container > a {
+  padding: 1em;
+  background-color: #0a95ff;
+  color: white;
+  user-select: none;
+  margin-right: 1em;
+  font-size: 1.1rem;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  outline: none;
+}
+
+.ask-container > a:hover {
+  background-color: #0074cc;
+}
+
 .postsContainer {
   border: 2px solid #d6d9dc;
   list-style: none;
   padding: 0;
-  margin: 2em 0;
 }
 
 .postsContainer > li > .question {

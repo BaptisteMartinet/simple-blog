@@ -4,6 +4,7 @@
   flex-direction: column;
   border: 2px solid #d6d9dc;
   padding: 1em;
+  margin-top: 2em;
 }
 
 .question-container > .question-title {
