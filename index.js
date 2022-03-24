@@ -45,6 +45,7 @@ app.post('/post', auth, (req, res) => {
     title,
     body,
     views: 0,
+    answers: 0,
     created_at: currentDate,
     updated_at: currentDate,
   };
@@ -127,6 +128,7 @@ app.post('/login', (req, res) => {
   if (!bcrypt.compareSync(password, user.password))
     return res.status(400).send(`Invalid credentials`);
   user.token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET_KEY, { expiresIn: "2h" });
+  res.cookie('access-token', user.token, { expires: new Date(Date.now() + 20000) });
   return res.status(200).json(user);
 });
 

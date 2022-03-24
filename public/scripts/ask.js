@@ -2,12 +2,12 @@
 async function createPost(title, body)
 {
   if (!title || !body)
-    return console.error('Title and Body must not be empty')
+    return console.error('Title and Body must not be empty');
   await fetch('/post', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      // TODO access token needed here
+      'x-access-token': getCookie('access-token'),
     },
     body: JSON.stringify({
       title,
