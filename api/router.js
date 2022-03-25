@@ -81,6 +81,14 @@ router.get('/user', (req, res) => {
   return res.status(200).json(trimmedUser);
 });
 
+router.get('/currentUser', auth, (req, res) => {
+  const { userId } = req.jwtPayload;
+  const user = DB.users.find(u => (u.id === userId));
+  if (!user)
+    return res.status(404).send(`User#${userId} does not exists.`);
+  return res.status(200).json(user);
+});
+
 function ensureUserArgs(args)
 {
   const { fullName, email, password } = args;
