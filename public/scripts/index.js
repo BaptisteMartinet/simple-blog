@@ -1,5 +1,5 @@
 (async () => {
-  const res = await fetch('/posts', { method: 'get' });
+  const res = await fetch('/api/posts', { method: 'get' });
   const data = await res.json();
 
   const postsContainer = document.querySelector('.postsContainer');
@@ -44,7 +44,7 @@
     questionSummary.appendChild(questionUser);
 
     const questionUserParagraphe = document.createElement('p');
-    const userRes = await fetch(`/user?id=${post.userId}`, { method: 'get' });
+    const userRes = await fetch(`/api/user?id=${post.userId}`, { method: 'get' });
     const user = await userRes.json();
     questionUserParagraphe.textContent = `${user.fullName} asked ${timeSince(post.created_at)} ago`;
     questionUser.appendChild(questionUserParagraphe);

@@ -3,7 +3,7 @@ async function createPost(title, body)
 {
   if (!title || !body)
     return console.error('Title and Body must not be empty');
-  const res = await fetch('/post', {
+  const res = await fetch('/api/post', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

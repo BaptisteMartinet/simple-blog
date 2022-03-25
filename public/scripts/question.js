@@ -4,8 +4,8 @@
   if (!urlParams.has('id'))
     return console.error('An id needs to be provided in the url.');
   const postId = urlParams.get('id');
-  const post = await (await fetch(`/post?id=${postId}`)).json();
-  const user = await (await fetch(`/user?id=${post.userId}`)).json();
+  const post = await (await fetch(`/api/post?id=${postId}`)).json();
+  const user = await (await fetch(`/api/user?id=${post.userId}`)).json();
 
   const questionTitle = document.getElementById('question-title');
   questionTitle.textContent = post.title;
