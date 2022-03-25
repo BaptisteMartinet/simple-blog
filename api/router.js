@@ -77,7 +77,6 @@ router.get('/user', (req, res) => {
   if (!user)
     return res.status(404).send(`User#${userId} not found.`);
   const trimmedUser = { ...user };
-  delete trimmedUser.token;
   delete trimmedUser.password;
   return res.status(200).json(trimmedUser);
 });
@@ -106,7 +105,6 @@ router.post('/register', (req, res) => {
     fullName,
     email,
     password: bcrypt.hashSync(password, 10),
-    token: null,
   };
   DB.users.push(createdUser);
   res.status(201).send('Account successfully created');
@@ -119,8 +117,8 @@ router.post('/login', (req, res) => {
     return res.status(404).send(`User not found`);
   if (!bcrypt.compareSync(password, user.password))
     return res.status(400).send(`Invalid credentials`);
-  user.token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET_KEY, { expiresIn: "2h" });
-  res.cookie('x-access-token', user.token, { expires: new Date(Date.now() + 20000), httpOnly: true });
+  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET_KEY, { expiresIn: "2h" });
+  res.cookie('x-access-token', token, { expires: new Date(Date.now() + 20000), httpOnly: true });
   return res.status(200).json(user);
 });
 
