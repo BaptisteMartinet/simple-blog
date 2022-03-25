@@ -33,7 +33,7 @@ router.post('/post', auth, (req, res) => {
   const currentDate = Date.now();
   const newPost = {
     id: uuidv4(),
-    userId: req.jwtPayload.userId,
+    userId: req.ctx.userId,
     title,
     body,
     views: 0,
@@ -52,7 +52,7 @@ router.patch('/post', auth, (req, res) => {
   const post = DB.posts.find(p => (p.id === postId));
   if (!post)
     return res.status(404).send(`Post#${postId} does not exists`);
-  if (post.userId != req.jwtPayload.userId)
+  if (post.userId != req.ctx.userId)
     return res.status(400).send(`You do not have the rights to update Post#${postId}`)
   const { title, body } = req.body;
   if (title)
@@ -82,7 +82,7 @@ router.get('/user', (req, res) => {
 });
 
 router.get('/currentUser', auth, (req, res) => {
-  const { userId } = req.jwtPayload;
+  const { userId } = req.ctx;
   const user = DB.users.find(u => (u.id === userId));
   if (!user)
     return res.status(404).send(`User#${userId} does not exists.`);
