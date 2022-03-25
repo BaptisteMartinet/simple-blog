@@ -3,7 +3,7 @@ async function createPost(title, body)
 {
   if (!title || !body)
     return console.error('Title and Body must not be empty');
-  await fetch('/post', {
+  const res = await fetch('/post', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -14,6 +14,7 @@ async function createPost(title, body)
       body
     }),
   });
+  console.log(res.ok);
 }
 
 document.querySelector("#btn-submit").addEventListener("click", async (event) => {
