@@ -7,7 +7,10 @@ async function login(args)
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(args),
   });
-  console.log(res.ok)
+  if (res.ok)
+    window.location.replace('/');
+  else
+    alert('Invalid credentials');
 }
 
 document.querySelector("#btn-submit").addEventListener("click", async (event) => {

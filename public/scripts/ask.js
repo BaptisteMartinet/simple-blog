@@ -14,7 +14,10 @@ async function createPost(title, body)
       body
     }),
   });
-  console.log(res.ok);
+  if (res.ok)
+    window.location.replace('/');
+  else
+    alert('You must be logged in to do this.');
 }
 
 document.querySelector("#btn-submit").addEventListener("click", async (event) => {
