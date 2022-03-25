@@ -9,6 +9,6 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use('/api', routes);
-app.use(express.static('public'));
+app.use(express.static('public', { extensions: [ 'html' ] }));
 
 app.listen(PORT, () => { console.info(`Server running on port: ${PORT}`); });
