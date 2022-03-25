@@ -7,7 +7,6 @@ async function createPost(title, body)
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-access-token': getCookie('access-token'),
     },
     body: JSON.stringify({
       title,

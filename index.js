@@ -8,11 +8,15 @@ const app = express();
 const DB = require('./database');
 const { validateEmail } = require('./utils/email');
 
+var cookieParser = require('cookie-parser')
+
 const PORT = process.env.PORT || 8080;
 
 /* CONFIG */
 
 app.use(express.json());
+app.use(cookieParser());
+
 
 app.use(express.static('public'));
 
@@ -128,7 +132,7 @@ app.post('/login', (req, res) => {
   if (!bcrypt.compareSync(password, user.password))
     return res.status(400).send(`Invalid credentials`);
   user.token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET_KEY, { expiresIn: "2h" });
-  res.cookie('access-token', user.token, { expires: new Date(Date.now() + 20000) });
+  res.cookie('x-access-token', user.token, { expires: new Date(Date.now() + 20000), httpOnly: true });
   return res.status(200).json(user);
 });
 
