@@ -3,11 +3,15 @@ async function register(args)
 {
   if (!args.fullName || !args.email || !args.password)
     return console.error('Args must be filled')
-  await fetch('/api/register', {
+  const res = await fetch('/api/register', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(args),
   });
+  if (res.ok)
+    document.location.replace('/login');
+  else
+    alert('Something went wrong');
 }
 
 document.querySelector("#btn-submit").addEventListener("click", async (event) => {
