@@ -63,6 +63,22 @@ router.patch('/post', auth, (req, res) => {
   res.status(200).json(post);
 });
 
+router.delete('/post', auth, (req, res) => {
+  const { id: postId } = req.query;
+  if (!postId)
+    return res.status(400).send('Invalid id.');
+  const post = DB.posts.find(p => (p.id === postId));
+  if (!post)
+    return res.status(404).send(`Post#${postId} does not exists.`);
+  if (post.userId != req.ctx.userId)
+    return res.status(403).send(`You don't have the rights to delete this post.`);
+  const postIdx = DB.posts.indexOf(post);
+  if (postIdx < 0)
+    return res.status(503).send('An error has occured.');
+  DB.posts.splice(postIdx, 1);
+  return res.status(200).send('Post has been deleted successfully.');
+});
+
 /* USERS */
 
 router.get('/users', (req, res) => {
