@@ -1,10 +1,22 @@
+function generateControlsTemplate(postId)
+{
+  return `
+      <a href="/ask/update?id=${postId}" class="question-update-control"><i class="fa-solid fa-pen-to-square"></i></a>
+  `;
+}
+
 (async () => {
-  const res = await fetch('/api/posts', { method: 'get' });
-  const data = await res.json();
+  const res = await fetch('/api/posts');
+  if (!res.ok)
+    return;
+  const posts = await res.json();
+
+  const resCurrentUser = await fetch('/api/currentUser');
+  const currentUser = resCurrentUser.ok ? await resCurrentUser.json() : null;
 
   const postsContainer = document.querySelector('.postsContainer');
-  for (post of data) {
-    const user = await (await fetch(`/api/user?id=${post.userId}`, { method: 'get' })).json();
+  for (post of posts) {
+    const user = await (await fetch(`/api/user?id=${post.userId}`)).json();
     const template = `
     <li>
       <div class="question">
@@ -15,11 +27,8 @@
         <div class="question-summary">
           <h1><a href="/question?id=${post.id}">${post.title}</a></h1>
           <div class="question-user">
-            <div id="question-controls">
-              <a href="/"><i class="fa-solid fa-pen-to-square"></i></a>
-              <a href="/"><i class="fa-solid fa-trash"></i></a>
-            </div>
-            <p>${user?.fullName ?? 'unknown'} asked ${timeSince(post.created_at)} ago</p>
+            ${post.userId === currentUser?.id ? generateControlsTemplate(post.id) : ''}
+            <p>${user?.fullName ?? 'Unknown'} asked ${timeSince(post.created_at)} ago</p>
           </div>
         </div>
       </div>

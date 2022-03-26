@@ -73,10 +73,6 @@
   align-items: center;
 }
 
-#question-controls {
-  min-width: 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.postsContainer > li > .question > .question-summary > .question-user > .question-update-control {
   margin-right: 1em;
 }
