@@ -49,3 +49,22 @@ document.querySelector("#btn-submit").addEventListener("click", async (event) =>
   const postId = urlParams.get('id');
   updatePost(postId, { title, body} );
 }, false);
+
+async function deletePost(postId)
+{
+  const res = await fetch(`/api/post?id=${postId}`, {
+    method: 'DELETE',
+  });
+  if (res.ok)
+    window.location.replace('/');
+  else
+    alert('Something went wrong while deleting the post.');
+}
+
+document.querySelector("#btn-delete").addEventListener("click", async (event) => {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (!urlParams.has('id'))
+    return;
+  const postId = urlParams.get('id');
+  deletePost(postId);
+}, false);

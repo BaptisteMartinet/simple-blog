@@ -38,7 +38,11 @@
   min-height: 20vh;
 }
 
-.question-form > #btn-submit {
+.question-form >.submit-container {
+  align-self: flex-end;
+}
+
+.question-form #btn-submit {
   padding: 1em;
   background-color: #0a95ff;
   color: white;
@@ -49,9 +53,25 @@
   outline: none;
   border: 1px solid transparent;
   margin-top: 1em;
-  align-self: flex-end;
 }
 
-.question-form > #btn-submit:hover {
+.question-form #btn-submit:hover {
   background-color: #0074cc;
+}
+
+.question-form #btn-delete {
+  padding: 1em;
+  background-color: #ff0a0a;
+  color: white;
+  user-select: none;
+  margin-right: 1em;
+  font-size: 1.1rem;
+  border-radius: 3px;
+  outline: none;
+  border: 1px solid transparent;
+  margin-top: 1em;
+}
+
+.question-form #btn-delete:hover {
+  background-color: #b30909;
 }
