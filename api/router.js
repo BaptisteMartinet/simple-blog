@@ -8,7 +8,7 @@ const DB = require('./database');
 
 const router = express.Router();
 
-/* POSTS */
+// POSTS
 
 router.get('/posts', (req, res) => {
   const limit = req.query.limit || Infinity;
@@ -103,7 +103,7 @@ router.post('/comment', auth, (req, res) => {
   return res.status(200).send('Comment successfully created.');
 });
 
-/* USERS */
+// USERS
 
 router.get('/users', (req, res) => {
   res.status(200).json(DB.users);
