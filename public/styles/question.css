@@ -11,3 +11,25 @@
   width: 100%;
   border-bottom: 2px solid #d6d9dc;
 }
+
+.comments-container {
+  width: 100%;
+  list-style: none;
+  padding: 1em;
+  margin: 0;
+}
+
+.comment-container {
+  position: relative;
+  width: 100%;
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid lightgrey;
+}
+
+.comment-user {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
