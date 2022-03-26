@@ -1,5 +1,10 @@
 const jwt = require("jsonwebtoken");
 
+/**
+ * @description A middleware function used for authentification to the API
+ * It checks if a jwt token is given either in the header or cookies of the query.
+ * If the token is valid, it decode the token and place the userId in a 'ctx' object.
+ */
 const verifyToken = (req, res, next) => {
   const token = req.headers["x-access-token"] || req.cookies['x-access-token'];
   if (!token)

@@ -10,11 +10,19 @@ const router = express.Router();
 
 // POSTS
 
+/**
+ * @description Return all the posts stored in DB
+ * @param limit Limit the number of posts returned
+ */
 router.get('/posts', (req, res) => {
   const limit = req.query.limit || Infinity;
   res.status(200).json(DB.posts.slice(0, limit));
 });
 
+/**
+ * @description Get a post
+ * @param id The post unique identifier
+ */
 router.get('/post', (req, res) => {
   const { id: postId } = req.query;
   if (!postId)
@@ -26,6 +34,11 @@ router.get('/post', (req, res) => {
   return res.status(200).json(post);
 });
 
+/**
+ * @description Create a post
+ * @param title
+ * @param body
+ */
 router.post('/post', auth, (req, res) => {
   const { title, body } = req.body;
   if (!title || !body)
@@ -45,6 +58,11 @@ router.post('/post', auth, (req, res) => {
   res.status(200).send('Post succesfully created.');
 });
 
+/**
+ * @description Update a post
+ * @param title
+ * @param body
+ */
 router.patch('/post', auth, (req, res) => {
   const { id: postId } = req.query;
   if (!postId)
@@ -63,6 +81,10 @@ router.patch('/post', auth, (req, res) => {
   res.status(200).json(post);
 });
 
+/**
+ * @description Delete a post
+ * @param id The post unique identifier
+ */
 router.delete('/post', auth, (req, res) => {
   const { id: postId } = req.query;
   if (!postId)
@@ -81,6 +103,11 @@ router.delete('/post', auth, (req, res) => {
 
 // Comments
 
+/**
+ * @description Get all comments
+ * @param postId Get comments of a specific post
+ * @param limit Limit the number of returned posts
+ */
 router.get('/comments', (req, res) => {
   const { postId, limit } = req.query;
   let comments = [ ...DB.comments ];
@@ -91,6 +118,9 @@ router.get('/comments', (req, res) => {
   res.status(200).json(comments);
 });
 
+/**
+ * @description Create a comment
+ */
 router.post('/comment', auth, (req, res) => {
   const { postId } = req.query;
   const { body } = req.body;
@@ -115,10 +145,17 @@ router.post('/comment', auth, (req, res) => {
 
 // USERS
 
+/**
+ * @description Get all users
+ */
 router.get('/users', (req, res) => {
   res.status(200).json(DB.users);
 });
 
+/**
+ * @description Get a specific user
+ * @param id The user unique identifier
+ */
 router.get('/user', (req, res) => {
   const { id: userId } = req.query;
   if (!userId)
@@ -131,6 +168,9 @@ router.get('/user', (req, res) => {
   return res.status(200).json(trimmedUser);
 });
 
+/**
+ * @description Return the authentified user
+ */
 router.get('/currentUser', auth, (req, res) => {
   const { userId } = req.ctx;
   const user = DB.users.find(u => (u.id === userId));
@@ -148,6 +188,12 @@ function ensureUserArgs(args)
     throw new Error('Invalid email adress');
 }
 
+/**
+ * @description Register a new user
+ * @param fullName
+ * @param email
+ * @param password
+ */
 router.post('/register', (req, res) => {
   const args = req.body;
   try {
@@ -168,6 +214,10 @@ router.post('/register', (req, res) => {
   res.status(201).send('Account successfully created');
 });
 
+/**
+ * @description Log the user in by returning its unique token in a cookie attached to the request.
+ * Every next query requiring authentification will need this token to authenticate the user.
+ */
 router.post('/login', (req, res) => {
   const { email, password } = req.body;
   const user = DB.users.find(u => (u.email === email));

@@ -3,6 +3,12 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const routes = require('./router');
 
+/*
+  This file is the entry point of the project.
+  It initialize express, define the middle wares that will be used,
+  and start the server.
+*/
+
 const PORT = process.env.PORT || 8080;
 const app = express();
 
