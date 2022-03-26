@@ -37,7 +37,7 @@ router.post('/post', auth, (req, res) => {
     title,
     body,
     views: 0,
-    answers: 0,
+    comments: 0,
     created_at: currentDate,
     updated_at: currentDate,
   };
@@ -96,9 +96,12 @@ router.post('/comment', auth, (req, res) => {
   const { body } = req.body;
   const { userId } = req.ctx;
   if (!postId)
-    return res.status(400).send('Invalid post id');
+    return res.status(400).send('Missing postId param');
   if (!body)
     return res.status(400).send('Invalid body.');
+  const post = DB.posts.find(p => (p.id === postId));
+  if (!post)
+    return res.status(404).send('Post does not exists');
   const newComment = {
     id: uuidv4(),
     postId,
@@ -106,6 +109,7 @@ router.post('/comment', auth, (req, res) => {
     body,
   };
   DB.comments.push(newComment);
+  post.comments += 1;
   return res.status(200).send('Comment successfully created.');
 });
 

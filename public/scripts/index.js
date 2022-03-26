@@ -21,7 +21,7 @@ function generateControlsTemplate(postId)
     <li>
       <div class="question">
         <div class="question-stats">
-          <p>${post.answers} answers</p>
+          <p>${post.comments} answers</p>
           <p>${post.views} views</p>
         </div>
         <div class="question-summary">
