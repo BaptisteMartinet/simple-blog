@@ -21,6 +21,14 @@
       "updated_at": 1647968229991
     }
   ],
+  "comments": [
+    {
+      "id": "d72dd9fd-f44e-4bb2-9948-75fa2cf0acf2",
+      "postId": "3e35feed-44fc-4183-9023-82baa1ca2cc4",
+      "userId": "be880630-f17d-4f62-8fc2-196bd2a14dbd",
+      "body": "I agree with this!"
+    }
+  ],
   "users": [
     {
       "id": "be880630-f17d-4f62-8fc2-196bd2a14dbd",

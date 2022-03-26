@@ -79,6 +79,30 @@ router.delete('/post', auth, (req, res) => {
   return res.status(200).send('Post has been deleted successfully.');
 });
 
+// Comments
+
+router.get('/comments', (req, res) => {
+  res.status(200).json(DB.comments);
+});
+
+router.post('/comment', auth, (req, res) => {
+  const { id: postId } = req.query;
+  const { body } = req.body;
+  const { userId } = req.ctx;
+  if (!postId)
+    return res.status(400).send('Invalid post id');
+  if (!body)
+    return res.status(400).send('Invalid body.');
+  const newComment = {
+    id: uuidv4(),
+    postId,
+    userId,
+    body,
+  };
+  DB.comments.push(newComment);
+  return res.status(200).send('Comment successfully created.');
+});
+
 /* USERS */
 
 router.get('/users', (req, res) => {
