@@ -1,12 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="../images/favicon/site.webmanifest">
   <title>Stack Underflow - Update Question</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/ask-update.css">
+  <link rel="stylesheet" href="../styles/nav-bar.css">
+  <link rel="stylesheet" href="../styles/footer.css">
 </head>
+
 <body>
-  
+  <!-- NavBar -->
+  <div class="navBar">
+    <a href="/"><img src="../images/logo_final.png" alt="logo" width="180px" height="auto"></a>
+    <form class="searchBox">
+      <input type="search" name="search" id="searchBox" placeholder="Search...">
+    </form>
+    <h2 id="nav-username-display" style="display: none;">Full name</h2>
+    <div id="nav-authentification-btns">
+      <a href="/login" id="login-btn">Log in</a>
+      <a href="/register" id="register-btn">Sign up</a>
+    </div>
+  </div>
+  <script src="../scripts/NavBar.js"></script>
+
+  <!-- Main -->
+  <main>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <div style="width: 50%; min-height: 100vh; padding-top: 50px;">
+        <div>
+          <div class="title-container">
+            <h1>Update Your question</h1>
+          </div>
+          <form class="question-form">
+            <label for="question-title">Title</label>
+            <input type="text" name="question-title" id="question-title">
+            <label for="question-body">Body</label>
+            <textarea name="question-body" id="question-body" cols="40" rows="10"></textarea>
+            <input type="submit" id="btn-submit" value="Update question">
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="../scripts/ask-update.js"></script>
+
+  <!-- Footer -->
+  <div class="footer"></div>
 </body>
+
 </html>
