@@ -12,5 +12,5 @@
   const questionMetadata = document.getElementById('question-metadata');
   questionMetadata.textContent = `Asked on ${new Date(post.created_at).toUTCString()} by ${user.fullName}. Viewed ${post.views} times`;
   const questionBody = document.getElementById('post-body');
-  questionBody.textContent = post.body;
+  questionBody.innerText = post.body;
 })();
