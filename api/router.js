@@ -82,11 +82,17 @@ router.delete('/post', auth, (req, res) => {
 // Comments
 
 router.get('/comments', (req, res) => {
-  res.status(200).json(DB.comments);
+  const { postId, limit } = req.query;
+  let comments = [ ...DB.comments ];
+  if (postId)
+    comments = comments.filter(c => (c.postId === postId));
+  if (limit)
+    comments.splice(0, limit);
+  res.status(200).json(comments);
 });
 
 router.post('/comment', auth, (req, res) => {
-  const { id: postId } = req.query;
+  const { postId } = req.query;
   const { body } = req.body;
   const { userId } = req.ctx;
   if (!postId)
