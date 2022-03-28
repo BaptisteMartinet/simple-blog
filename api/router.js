@@ -158,6 +158,7 @@ router.get('/user', (req, res) => {
   if (!user)
     return res.status(404).send(`User#${userId} not found.`);
   const trimmedUser = { ...user };
+  delete trimmedUser.email;
   delete trimmedUser.password;
   return res.status(200).json(trimmedUser);
 });
