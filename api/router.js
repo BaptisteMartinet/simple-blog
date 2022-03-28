@@ -13,10 +13,19 @@ const router = express.Router();
 /**
  * @description Return all the posts stored in DB
  * @param limit Limit the number of posts returned
+ * @param searchTerm Filter posts with a search term
  */
 router.get('/posts', (req, res) => {
-  const limit = req.query.limit || Infinity;
-  res.status(200).json(DB.posts.slice(0, limit));
+  const { limit, searchTerm } = req.query;
+  let posts = [ ...DB.posts ];
+  if (searchTerm)
+    posts = posts.filter(p => (
+      p.title.toLowerCase().includes(searchTerm.toLowerCase()))
+      || p.body.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  if (limit)
+    posts.splice(0, limit);
+  res.status(200).json(posts);
 });
 
 /**
