@@ -147,13 +147,6 @@ router.post('/comment', auth, (req, res) => {
 // USERS
 
 /**
- * @description Get all users
- */
-router.get('/users', (req, res) => {
-  res.status(200).json(DB.users);
-});
-
-/**
  * @description Get a specific user
  * @param id The user unique identifier
  */
