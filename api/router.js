@@ -120,6 +120,7 @@ router.get('/comments', (req, res) => {
 
 /**
  * @description Create a comment
+ * @param body The comment body
  */
 router.post('/comment', auth, (req, res) => {
   const { postId } = req.query;
