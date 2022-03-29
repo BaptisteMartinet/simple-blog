@@ -25,7 +25,7 @@ router.get('/posts', (req, res) => {
     );
   if (limit)
     posts.splice(0, limit);
-  res.status(200).json(posts);
+  res.json(posts);
 });
 
 /**
@@ -40,7 +40,7 @@ router.get('/post', (req, res) => {
   if (!post)
     return res.status(404).send(`Post#${postId} does not exist.`);
   post.views += 1;
-  return res.status(200).json(post);
+  return res.json(post);
 });
 
 /**
@@ -64,7 +64,7 @@ router.post('/post', auth, (req, res) => {
     updated_at: currentDate,
   };
   DB.posts.push(newPost);
-  res.status(200).send('Post succesfully created.');
+  res.send('Post succesfully created.');
 });
 
 /**
@@ -87,7 +87,7 @@ router.patch('/post', auth, (req, res) => {
   if (body)
     post.body = body;
   post.updated_at = Date.now();
-  res.status(200).json(post);
+  res.json(post);
 });
 
 /**
@@ -107,7 +107,7 @@ router.delete('/post', auth, (req, res) => {
   if (postIdx < 0)
     return res.status(503).send('An error has occured.');
   DB.posts.splice(postIdx, 1);
-  return res.status(200).send('Post has been deleted successfully.');
+  return res.send('Post has been deleted successfully.');
 });
 
 // Comments
@@ -124,7 +124,7 @@ router.get('/comments', (req, res) => {
     comments = comments.filter(c => (c.postId === postId));
   if (limit)
     comments.splice(0, limit);
-  res.status(200).json(comments);
+  res.json(comments);
 });
 
 /**
@@ -150,7 +150,7 @@ router.post('/comment', auth, (req, res) => {
   };
   DB.comments.push(newComment);
   post.comments += 1;
-  return res.status(200).send('Comment successfully created.');
+  return res.send('Comment successfully created.');
 });
 
 // USERS
@@ -169,7 +169,7 @@ router.get('/user', (req, res) => {
   const trimmedUser = { ...user };
   delete trimmedUser.email;
   delete trimmedUser.password;
-  return res.status(200).json(trimmedUser);
+  return res.json(trimmedUser);
 });
 
 /**
@@ -180,7 +180,7 @@ router.get('/currentUser', auth, (req, res) => {
   const user = DB.users.find(u => (u.id === userId));
   if (!user)
     return res.status(404).send(`User#${userId} does not exists.`);
-  return res.status(200).json(user);
+  return res.json(user);
 });
 
 function ensureUserArgs(args)
@@ -231,7 +231,7 @@ router.post('/login', (req, res) => {
     return res.status(400).send(`Invalid credentials`);
   const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET_KEY, { expiresIn: "24h" });
   res.cookie('x-access-token', token, { expires: new Date(Date.now() + 86400000), httpOnly: true });
-  return res.status(200).json(user);
+  return res.json(user);
 });
 
 module.exports = router;
