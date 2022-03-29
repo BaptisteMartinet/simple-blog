@@ -12,8 +12,6 @@ const { validateEmail } = require('../utils/email');
  */
 router.get('/:id', async (req, res) => {
   const { id: userId } = req.params;
-  if (!userId)
-    return res.status(400).send('Invalid id.');
   const user = await User.findById(userId);
   if (!user)
     return res.status(404).send(`User#${userId} not found.`);

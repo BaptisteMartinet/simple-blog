@@ -20,8 +20,6 @@ router.get('/', async (req, res) => {
  */
 router.get('/:id', async (req, res) => {
   const { id: postId } = req.params;
-  if (!postId)
-    return res.status(400).send(`Invalid post id`);
   const post = await Post.findById(postId);
   if (!post)
     return res.status(404).send(`Post#${postId} does not exist.`);
@@ -54,8 +52,6 @@ router.post('/', auth, async (req, res) => {
  */
 router.patch('/:id', auth, async (req, res) => {
   const { id: postId } = req.params;
-  if (!postId)
-    return res.status(400).send('Invalid id.');
   const post = await Post.findById(postId);
   if (!post)
     return res.status(404).send(`Post#${postId} does not exists`);
@@ -76,8 +72,6 @@ router.patch('/:id', auth, async (req, res) => {
  */
 router.delete('/:id', auth, async (req, res) => {
   const { id: postId } = req.params;
-  if (!postId)
-    return res.status(400).send('Invalid id.');
   const post = await Post.findById(postId);
   if (!post)
     return res.status(404).send(`Post#${postId} does not exists.`);
