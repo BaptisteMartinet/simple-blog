@@ -36,6 +36,7 @@
 .question-form > #question-body {
   width: 100%;
   min-height: 20vh;
+  resize: none;
 }
 
 .question-form >.submit-container {
