@@ -12,11 +12,11 @@ const routes = require('./api/routes/router');
 */
 
 (async () => {
-  const { DATABASE_NAME, PORT, ENVIRONMENT } = process.env;
-  if (!DATABASE_NAME || !PORT)
+  const { DATABASE_URI, PORT, ENVIRONMENT } = process.env;
+  if (!DATABASE_URI || !PORT)
     throw new Error('Missing DATABASE_NAME AND PORT environment variables.');
   mongoose.set('debug', (ENVIRONMENT !== 'prod'));
-  await mongoose.connect(DATABASE_NAME);
+  await mongoose.connect(DATABASE_URI);
   console.info('Database successfully connected.');
   const app = express();
   app.use(express.json());
