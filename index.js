@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
-const routes = require('./routes/router');
+const routes = require('./api/routes/router');
 
 /*
   This file is the entry point of the project.
