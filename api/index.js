@@ -2,18 +2,21 @@ require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
-const routes = require('./router');
+const routes = require('./routes/router');
 
 /*
   This file is the entry point of the project.
-  It initialize express, define the middle wares that will be used,
+  It initialize express, connect to the db,
+  define the middlewares that will be used,
   and start the server.
 */
 
-const PORT = process.env.PORT || 3000;
-
 (async () => {
-  await mongoose.connect(process.env.DATABASE_NAME);
+  const { DATABASE_NAME, PORT } = process.env;
+  if (!DATABASE_NAME || !PORT)
+    throw new Error('Missing DATABASE_NAME AND PORT environment variables.');
+  mongoose.set('debug', true);
+  await mongoose.connect(DATABASE_NAME);
   console.info('Database successfully connected.');
   const app = express();
   app.use(express.json());
