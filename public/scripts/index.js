@@ -10,7 +10,7 @@ function generateControlsTemplate(postId)
   const urlParams = new URLSearchParams(queryString);
   const searchTerm = urlParams.get('searchTerm');
 
-  const url = new URL('api/posts', window.location.origin);
+  const url = new URL('api/post', window.location.origin);
   if (searchTerm)
     url.searchParams.append('searchTerm', searchTerm);
   const res = await fetch(url);
@@ -32,10 +32,10 @@ function generateControlsTemplate(postId)
           <p>${post.views} views</p>
         </div>
         <div class="question-summary">
-          <h1><a href="/question?id=${post.id}">${post.title}</a></h1>
+          <h1><a href="/question?id=${post._id}">${post.title}</a></h1>
           <div class="question-user">
-            ${post.userId === currentUser?.id ? generateControlsTemplate(post.id) : ''}
-            <p>${user?.fullName ?? 'Unknown'} asked ${timeSince(post.created_at)} ago</p>
+            ${post.userId === currentUser?._id ? generateControlsTemplate(post._id) : ''}
+            <p>${user?.fullName ?? 'Unknown'} asked ${timeSince(post.createdAt)} ago</p>
           </div>
         </div>
       </div>

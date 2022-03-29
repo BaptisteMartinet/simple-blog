@@ -3,7 +3,7 @@ async function register(args)
 {
   if (!args.fullName || !args.email || !args.password)
     return console.error('Args must be filled')
-  const res = await fetch('/api/register', {
+  const res = await fetch('/api/user/register', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(args),
