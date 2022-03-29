@@ -17,7 +17,7 @@ router.get('/:id', async (req, res) => {
   const user = await User.findById(userId);
   if (!user)
     return res.status(404).send(`User#${userId} not found.`);
-  const trimmedUser = { ...user };
+  const trimmedUser = { ...user._doc };
   delete trimmedUser.email;
   delete trimmedUser.password;
   return res.json(trimmedUser);
