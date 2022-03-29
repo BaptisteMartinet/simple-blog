@@ -12,6 +12,10 @@
   border-bottom: 2px solid #d6d9dc;
 }
 
+fieldset {
+  margin-top: 1em;
+}
+
 .comments-container {
   width: 100%;
   list-style: none;
@@ -26,10 +30,42 @@
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid lightgrey;
+  margin-bottom: 1em;
 }
 
 .comment-user {
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+.comment-form-container {
+  width: 100%;
+  height: auto;
+  margin-top: 2em;
+}
+
+.comment-form-container > textarea {
+  width: 100%;
+  height: 30vh;
+  resize: none;
+  padding: 1em;
+}
+
+.comment-form-container > input[type=submit] {
+  padding: 1em;
+  background-color: #0a95ff;
+  color: white;
+  user-select: none;
+  margin-right: 1em;
+  font-size: 1.1rem;
+  border-radius: 3px;
+  outline: none;
+  border: 1px solid transparent;
+  margin-top: 1em;
+  cursor: pointer;
+}
+
+.comment-form-container > input[type=submit]:hover {
+  background-color: #0074cc;
 }

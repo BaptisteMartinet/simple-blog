@@ -1,5 +1,4 @@
-async function generateComments(postId)
-{
+async function generateComments(postId) {
   const commentsRes = await fetch(`/api/comment?postId=${postId}`);
   if (!commentsRes.ok)
     return;
@@ -45,3 +44,28 @@ async function generateComments(postId)
   const questionBody = document.getElementById('post-body');
   questionBody.innerText = post.body;
 })();
+
+async function createComment(args) {
+  if (!args.body)
+    return;
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  if (!urlParams.has('id'))
+    return console.error('An id needs to be provided in the url.');
+  const postId = urlParams.get('id');
+  const res = await fetch(`/api/comment?postId=${postId}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(args),
+  });
+  if (res.ok)
+    window.location.reload();
+  else
+    alert('Something went wrong when creating comment.')
+}
+
+document.querySelector('#btn-submit').addEventListener('click', (e) => {
+  e.preventDefault();
+  const body = document.querySelector('#comment-form-body').value;
+  createComment({ body });
+});
