@@ -42,7 +42,7 @@ async function generateComments(postId) {
   const questionMetadata = document.getElementById('question-metadata');
   questionMetadata.textContent = `Asked on ${new Date(post.createdAt).toUTCString()} by ${user.fullName}. Viewed ${post.views} times`;
   const questionBody = document.getElementById('post-body');
-  questionBody.innerText = post.body;
+  questionBody.innerHTML = post.body;
 })();
 
 async function createComment(args) {
