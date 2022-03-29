@@ -4,12 +4,12 @@
   const authentificationBtns = document.getElementById('nav-authentification-btns');
 
   const res = await fetch('/api/currentUser');
-  if (!res.ok)
+  if (!res.ok) {
+    authentificationBtns.style.display = 'block';
     return;
+  }
   const user = await res.json();
   userNameDisplay.textContent = user.fullName;
-
-  authentificationBtns.style.display = 'none';
   userNameDisplay.style.display = 'block';
 })();
 
