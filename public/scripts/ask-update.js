@@ -8,7 +8,7 @@
     return;
   const postId = urlParams.get('id');
 
-  const resPost = await fetch(`/api/post?id=${postId}`);
+  const resPost = await fetch(`/api/post/${postId}`);
   if (!resPost.ok)
     return;
   const post = await resPost.json();
@@ -22,7 +22,7 @@ async function updatePost(postId, args)
   const { title, body } = args;
   if (!title || !body)
     return console.log('Title and body must be provided.');
-  const res = await fetch(`/api/post?id=${postId}`, {
+  const res = await fetch(`/api/post/${postId}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ document.querySelector("#btn-submit").addEventListener("click", async (event) =>
 
 async function deletePost(postId)
 {
-  const res = await fetch(`/api/post?id=${postId}`, {
+  const res = await fetch(`/api/post/${postId}`, {
     method: 'DELETE',
   });
   if (res.ok)

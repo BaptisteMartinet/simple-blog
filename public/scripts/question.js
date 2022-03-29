@@ -29,11 +29,11 @@ async function generateComments(postId)
 
   generateComments(postId); //Comments will be loaded asynchronously
 
-  const postRes = await fetch(`/api/post?id=${postId}`);
+  const postRes = await fetch(`/api/post/${postId}`);
   if (!postRes.ok)
     return;
   const post = await postRes.json();
-  const userRes = await fetch(`/api/user?id=${post.userId}`);
+  const userRes = await fetch(`/api/user/${post.userId}`);
   if (!userRes.ok)
     return;
   const user = await userRes.json();

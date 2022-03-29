@@ -23,7 +23,7 @@ function generateControlsTemplate(postId)
 
   const postsContainer = document.querySelector('.postsContainer');
   for (post of posts) {
-    const user = await (await fetch(`/api/user?id=${post.userId}`)).json();
+    const user = await (await fetch(`/api/user/${post.userId}`)).json();
     const template = `
     <li>
       <div class="question">

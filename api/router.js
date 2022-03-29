@@ -32,8 +32,8 @@ router.get('/posts', (req, res) => {
  * @description Get a post
  * @param id The post unique identifier
  */
-router.get('/post', (req, res) => {
-  const { id: postId } = req.query;
+router.get('/post/:id', (req, res) => {
+  const { id: postId } = req.params;
   if (!postId)
     return res.status(400).send(`Invalid post id`);
   const post = DB.posts.find(post => (post.id === postId));
@@ -72,8 +72,8 @@ router.post('/post', auth, (req, res) => {
  * @param title
  * @param body
  */
-router.patch('/post', auth, (req, res) => {
-  const { id: postId } = req.query;
+router.patch('/post/:id', auth, (req, res) => {
+  const { id: postId } = req.params;
   if (!postId)
     return res.status(400).send('Invalid id.');
   const post = DB.posts.find(p => (p.id === postId));
@@ -94,8 +94,8 @@ router.patch('/post', auth, (req, res) => {
  * @description Delete a post
  * @param id The post unique identifier
  */
-router.delete('/post', auth, (req, res) => {
-  const { id: postId } = req.query;
+router.delete('/post/:id', auth, (req, res) => {
+  const { id: postId } = req.params;
   if (!postId)
     return res.status(400).send('Invalid id.');
   const post = DB.posts.find(p => (p.id === postId));
@@ -159,8 +159,8 @@ router.post('/comment', auth, (req, res) => {
  * @description Get a specific user
  * @param id The user unique identifier
  */
-router.get('/user', (req, res) => {
-  const { id: userId } = req.query;
+router.get('/user/:id', (req, res) => {
+  const { id: userId } = req.params;
   if (!userId)
     return res.status(400).send('Invalid id.');
   const user = DB.users.find(u => (u.id === userId));
