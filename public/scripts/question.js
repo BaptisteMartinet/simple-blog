@@ -1,6 +1,6 @@
 async function generateComments(postId)
 {
-  const commentsRes = await fetch(`/api/comments?postId=${postId}`);
+  const commentsRes = await fetch(`/api/comment?postId=${postId}`);
   if (!commentsRes.ok)
     return;
   const comments = await commentsRes.json();
