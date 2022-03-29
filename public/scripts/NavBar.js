@@ -12,3 +12,9 @@
   authentificationBtns.style.display = 'none';
   userNameDisplay.style.display = 'block';
 })();
+
+document.querySelector('.searchBox').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const searchTerm = document.getElementById('searchBox').value;
+  document.location.replace(`/?searchTerm=${searchTerm}`);
+});

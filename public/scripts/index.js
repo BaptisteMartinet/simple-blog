@@ -6,7 +6,14 @@ function generateControlsTemplate(postId)
 }
 
 (async () => {
-  const res = await fetch('/api/posts');
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const searchTerm = urlParams.get('searchTerm');
+
+  const url = new URL('api/posts', window.location.origin);
+  if (searchTerm)
+    url.searchParams.append('searchTerm', searchTerm);
+  const res = await fetch(url);
   if (!res.ok)
     return;
   const posts = await res.json();
