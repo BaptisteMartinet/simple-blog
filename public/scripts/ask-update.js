@@ -33,7 +33,7 @@ async function updatePost(postId, args)
     }),
   });
   if (res.ok)
-    document.location.replace(`/question?id=${postId}`);
+    window.location.replace(`/question?id=${postId}`);
   else
     alert('Something went wrong while updating post.');
 }

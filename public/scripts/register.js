@@ -9,7 +9,7 @@ async function register(args)
     body: JSON.stringify(args),
   });
   if (res.ok)
-    document.location.replace('/login');
+    window.location.replace('/login');
   else
     alert('Something went wrong');
 }
