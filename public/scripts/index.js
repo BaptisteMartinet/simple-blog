@@ -13,17 +13,18 @@ function generateControlsTemplate(postId)
   const url = new URL('api/post', window.location.origin);
   if (searchTerm)
     url.searchParams.append('searchTerm', searchTerm);
-  const res = await fetch(url);
-  if (!res.ok)
+  const postsRes = await fetch(url);
+  if (!postsRes.ok)
     return;
-  const posts = await res.json();
+  const posts = await postsRes.json();
 
   const resCurrentUser = await fetch('/api/currentUser');
   const currentUser = resCurrentUser.ok ? await resCurrentUser.json() : null;
 
   const postsContainer = document.querySelector('.postsContainer');
   for (post of posts) {
-    const user = await (await fetch(`/api/user/${post.userId}`)).json();
+    const userRes = await fetch(`/api/user/${post.userId}`);
+    const user = await userRes.json();
     const template = `
     <li>
       <div class="question">
