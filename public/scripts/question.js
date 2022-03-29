@@ -3,6 +3,10 @@ async function generateComments(postId) {
   if (!commentsRes.ok)
     return;
   const comments = await commentsRes.json();
+
+  const commentSection = document.getElementById('comment-section-fieldset');
+  if (comments.length > 0)
+    commentSection.style.display = 'block';
   const commentList = document.querySelector('.comments-container');
   for (const comment of comments) {
     const commentTemplate = `
