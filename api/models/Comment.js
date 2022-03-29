@@ -6,7 +6,7 @@ const CommentSchema = new Schema({
   postId: { type:ObjectId, ref: 'Post', required: true },
   userId: { type: ObjectId, ref: 'User', required: true },
   body: { type: String, required: true },
-});
+}, { timestamps: true });
 
 const Comment = mongoose.model('Comment', CommentSchema, 'comments');
 
