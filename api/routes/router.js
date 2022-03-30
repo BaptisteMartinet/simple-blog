@@ -19,4 +19,8 @@ router.use('/user', UserRouter);
   return res.json(user);
 });
 
+router.get('/logout', auth, async (req, res) => {
+  res.clearCookie('x-access-token').send('Successfully logged out.');
+});
+
 module.exports = router;
