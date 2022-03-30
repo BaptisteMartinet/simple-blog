@@ -2,14 +2,18 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  border: 2px solid #d6d9dc;
   padding: 1em;
   margin-top: 2em;
+  border: 2px solid black;
 }
 
-.question-container > .question-title {
+.question-container > .question-title-container {
   width: 100%;
   border-bottom: 2px solid #d6d9dc;
+}
+
+.question-title-container > #question-metadata {
+  color: rgb(136, 136, 136);
 }
 
 #comment-section-fieldset {

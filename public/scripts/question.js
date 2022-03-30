@@ -1,4 +1,4 @@
-async function generateComments(postId) {
+async function generateComments(postId, user) {
   const commentsRes = await fetch(`/api/comment?postId=${postId}`);
   if (!commentsRes.ok)
     return;
@@ -15,7 +15,7 @@ async function generateComments(postId) {
           <p>${comment.body}</p>
         </div>
         <div class="comment-user">
-          <p>Answered yesterday by Baptiste Martinet</p>
+          <p>Answered ${new Date(comment.createdAt).toLocaleString()} by ${user?.fullName ?? 'Unknown'}</p>
         </div>
       </li>
     `;
@@ -30,21 +30,19 @@ async function generateComments(postId) {
     return console.error('An id needs to be provided in the url.');
   const postId = urlParams.get('id');
 
-  generateComments(postId); //Comments will be loaded asynchronously
-
   const postRes = await fetch(`/api/post/${postId}`);
   if (!postRes.ok)
     return;
   const post = await postRes.json();
   const userRes = await fetch(`/api/user/${post.userId}`);
-  if (!userRes.ok)
-    return;
   const user = await userRes.json();
+
+  generateComments(postId, user); //Comments will be loaded asynchronously
 
   const questionTitle = document.getElementById('question-title');
   questionTitle.textContent = post.title;
   const questionMetadata = document.getElementById('question-metadata');
-  questionMetadata.textContent = `Asked on ${new Date(post.createdAt).toUTCString()} by ${user.fullName}. Viewed ${post.views} times`;
+  questionMetadata.textContent = `Asked on ${new Date(post.createdAt).toLocaleString()} by ${user?.fullName ?? 'Unknown'}. Viewed ${post.views} times`;
   const questionBody = document.getElementById('post-body');
   questionBody.innerHTML = post.body;
 })();
