@@ -62,7 +62,7 @@ router.patch('/:id', auth, async (req, res) => {
     post.title = title;
   if (body)
     post.body = body;
-  post.save();
+  await post.save();
   res.json(post);
 });
 
