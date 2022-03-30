@@ -55,3 +55,21 @@
 .navBar > #nav-authentification-btns > #register-btn:hover {
   background-color: #0668b3;
 }
+
+.navBar > #logout-btn {
+  position: absolute;
+  right: 0;
+  margin-right: 2em;
+  color: white;
+  background-color: #bd0000;
+  padding: 0.8em 1em;
+  border: 1px solid transparent;
+  outline: none;
+  text-decoration: none;
+  user-select: none;
+  border-radius: 3px;
+}
+
+.navBar > #logout-btn:hover {
+  background-color: #f00000;
+}

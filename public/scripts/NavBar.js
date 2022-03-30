@@ -18,3 +18,10 @@ document.querySelector('.searchBox').addEventListener('submit', (e) => {
   const searchTerm = document.getElementById('searchBox').value;
   window.location.replace(`/?searchTerm=${searchTerm}`);
 });
+
+document.querySelector('#logout-btn').addEventListener('click', async () => {
+  const res = await fetch('/api/logout');
+  if (!res.ok)
+    return;
+  window.location.reload();
+});
