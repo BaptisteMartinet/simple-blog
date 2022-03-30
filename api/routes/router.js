@@ -19,6 +19,9 @@ router.use('/user', UserRouter);
   return res.json(user);
 });
 
+/**
+ * @description Logout the user by deleting its authentification token
+ */
 router.get('/logout', auth, async (req, res) => {
   res.clearCookie('x-access-token').send('Successfully logged out.');
 });
