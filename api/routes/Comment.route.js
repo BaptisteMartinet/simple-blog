@@ -10,7 +10,7 @@ const { Post, Comment } = require('../models');
  */
 router.get('/', async (req, res) => {
   const { postId, limit } = req.query;
-  const comments = await Comment.find({ postId }, null, { limit: limit ?? Infinity });
+  const comments = await Comment.find({ postId }, null, { limit: limit ?? Infinity }).populate('user');
   res.json(comments);
 });
 
@@ -31,7 +31,7 @@ router.post('/', auth, async (req, res) => {
     return res.status(404).send('Post does not exists');
   await Comment.create({
     postId,
-    userId,
+    user: userId,
     body,
   });
   post.comments += 1;

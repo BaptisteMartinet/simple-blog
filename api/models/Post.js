@@ -3,7 +3,7 @@ const { Schema, Types } = mongoose;
 const { ObjectId } = Types;
 
 const PostSchema = new Schema({
-  userId: { type: ObjectId, ref: 'User', required: true },
+  user: { type: ObjectId, ref: 'User', required: true },
   title: { type: String, required: true },
   body: { type: String, required: true },
   views: { type: Number, default: 0, required: true },

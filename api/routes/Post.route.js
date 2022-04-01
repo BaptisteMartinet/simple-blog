@@ -10,7 +10,7 @@ const { Post } = require('../models');
  */
 router.get('/', async (req, res) => {
   const { limit, searchTerm } = req.query;
-  const posts = await Post.find({}, null, { limit: limit ?? Infinity });
+  const posts = await Post.find({}, null, { limit: limit ?? Infinity }).populate('user');
   res.json(posts);
 });
 
@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
  */
 router.get('/:id', async (req, res) => {
   const { id: postId } = req.params;
-  const post = await Post.findById(postId);
+  const post = await Post.findById(postId).populate('user');
   if (!post)
     return res.status(404).send(`Post#${postId} does not exist.`);
   post.views += 1;
@@ -38,7 +38,7 @@ router.post('/', auth, async (req, res) => {
   if (!title || !body)
     return res.status(400).send('Invalid parameters');
   await Post.create({
-    userId: req.ctx.userId,
+    user: req.ctx.userId,
     title,
     body,
   });
