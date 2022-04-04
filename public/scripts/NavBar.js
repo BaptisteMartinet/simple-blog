@@ -2,6 +2,7 @@
 (async () => {
   const userNameDisplay = document.getElementById('nav-username-display');
   const authentificationBtns = document.getElementById('nav-authentification-btns');
+  const logoutBtn = document.getElementById('logout-btn');
 
   const res = await fetch('/api/currentUser');
   if (!res.ok) {
@@ -11,6 +12,7 @@
   const user = await res.json();
   userNameDisplay.textContent = user.fullName;
   userNameDisplay.style.display = 'block';
+  logoutBtn.style.display = 'block';
 })();
 
 document.querySelector('.searchBox').addEventListener('submit', (e) => {
