@@ -1,5 +1,5 @@
 :root {
-  --fs-xl: 3rem;
+  --fs-xl: 2.5rem;
   --fs-800: 2rem;
   --fs-700: 1.75rem;
   --fs-600: 1.5rem;
@@ -10,7 +10,7 @@
 
 @media (max-width: 80em) {
   :root {
-    --fs-xl: 2.5rem;
+    --fs-xl: 2rem;
     --fs-800: 1.75rem;
     --fs-700: 1.50rem;
     --fs-600: 1.25rem;

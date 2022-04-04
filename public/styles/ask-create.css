@@ -23,7 +23,7 @@
 }
 
 .question-form > label {
-  font-size: 1.8em;
+  font-size: var(--fs-800);
   margin-bottom: .4em;
 }
 
@@ -31,12 +31,15 @@
   width: 100%;
   margin-bottom: 1em;
   padding: .5em;
+  font-size: var(--fs-500);
 }
 
 .question-form > #question-body {
   width: 100%;
+  max-width: 100%;
   min-height: 20vh;
-  resize: none;
+  padding: .5em;
+  font-size: var(--fs-400);
 }
 
 .question-form > #btn-submit {
@@ -45,8 +48,8 @@
   color: white;
   user-select: none;
   margin-right: 1em;
-  font-size: 1.1rem;
-  border-radius: 3px;
+  font-size: var(--fs-400);
+  border-radius: 4px;
   outline: none;
   border: 1px solid transparent;
   margin-top: 1em;

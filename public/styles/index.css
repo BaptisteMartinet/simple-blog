@@ -33,7 +33,6 @@
 .postsContainer > li > .question {
   width: 100%;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   padding: .5em;
   border-bottom: 1px solid #d6d9dc;;
@@ -42,23 +41,17 @@
 .postsContainer > li > .question > .question-stats {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   justify-content: center;
-  flex-grow: 1;
-  padding: .5em;
+  align-items: center;
+  width: 10%;
+  padding: .2em;
 }
 
 .postsContainer > li > .question > .question-summary {
-  flex-grow: 6;
+  width: 90%;
   display: flex;
-  flex-flow: row wrap;
-  justify-content: stretch;
-  align-items: center;
+  flex-direction: column;
   padding: 0 2em;
-}
-
-.postsContainer > li > .question > .question-summary > .title-container {
-  flex-grow: 4;
 }
 
 .postsContainer > li > .question > .question-summary > .title-container > h1 {
@@ -68,9 +61,11 @@
 }
 
 .postsContainer > li > .question > .question-summary > .question-user {
-  flex-grow: 1;
   display: flex;
   align-items: center;
+  font-size: var(--fs-400);
+  align-self: flex-end;
+  margin-top: .5em;
 }
 
 .postsContainer > li > .question > .question-summary > .question-user > .question-update-control {
