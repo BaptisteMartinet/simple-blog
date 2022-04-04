@@ -72,7 +72,7 @@ router.patch('/:id', auth, async (req, res) => {
   const post = await Post.findById(postId);
   if (!post)
     return res.status(404).send(`Post#${postId} does not exists`);
-  if (post.userId != req.ctx.userId)
+  if (post.user != req.ctx.userId)
     return res.status(400).send(`You do not have the rights to update Post#${postId}`);
   const { title, body } = req.body;
   if (title)
@@ -92,7 +92,7 @@ router.delete('/:id', auth, async (req, res) => {
   const post = await Post.findById(postId);
   if (!post)
     return res.status(404).send(`Post#${postId} does not exists.`);
-  if (post.userId != req.ctx.userId)
+  if (post.user != req.ctx.userId)
     return res.status(403).send(`You don't have the rights to delete this post.`);
   await post.deleteOne();
   res.send('Post has been deleted successfully.');
