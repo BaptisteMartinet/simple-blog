@@ -38,7 +38,7 @@ async function updatePost(postId, args)
     alert('Something went wrong while updating post.');
 }
 
-document.querySelector("#btn-submit").addEventListener("click", async (event) => {
+document.querySelector('#btn-submit').addEventListener('click', async (event) => {
   event.preventDefault();
   const title = document.getElementById('question-title').value;
   const body = document.getElementById('question-body').value;
@@ -61,7 +61,7 @@ async function deletePost(postId)
     alert('Something went wrong while deleting the post.');
 }
 
-document.querySelector("#btn-delete").addEventListener("click", async (event) => {
+document.querySelector('#btn-delete').addEventListener('click', async (event) => {
   const urlParams = new URLSearchParams(window.location.search);
   if (!urlParams.has('id'))
     return;

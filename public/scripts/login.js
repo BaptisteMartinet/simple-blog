@@ -13,7 +13,7 @@ async function login(args)
     alert('Invalid credentials');
 }
 
-document.querySelector("#btn-submit").addEventListener("click", async (event) => {
+document.querySelector('#btn-submit').addEventListener('click', async (event) => {
   event.preventDefault();
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;

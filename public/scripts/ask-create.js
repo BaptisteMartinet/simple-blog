@@ -17,7 +17,7 @@ async function createPost(title, body)
     alert('You must be logged in to do this.');
 }
 
-document.querySelector("#btn-submit").addEventListener("click", async (event) => {
+document.querySelector('#btn-submit').addEventListener('click', async (event) => {
   event.preventDefault();
   const postTitle = document.getElementById('question-title').value;
   const postBody = document.getElementById('question-body').value;

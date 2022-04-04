@@ -14,7 +14,7 @@ async function register(args)
     alert('Something went wrong');
 }
 
-document.querySelector("#btn-submit").addEventListener("click", async (event) => {
+document.querySelector('#btn-submit').addEventListener('click', async (event) => {
   event.preventDefault();
   const fullName = document.getElementById('fullName').value;
   const email = document.getElementById('email').value;
