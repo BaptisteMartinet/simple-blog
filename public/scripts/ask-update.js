@@ -47,7 +47,7 @@ document.querySelector("#btn-submit").addEventListener("click", async (event) =>
   if (!urlParams.has('id'))
     return;
   const postId = urlParams.get('id');
-  updatePost(postId, { title, body} );
+  await updatePost(postId, { title, body} );
 }, false);
 
 async function deletePost(postId)
@@ -56,7 +56,7 @@ async function deletePost(postId)
     method: 'DELETE',
   });
   if (res.ok)
-    window.location.replace('/');
+    window.location.replace(window.location.origin);
   else
     alert('Something went wrong while deleting the post.');
 }
@@ -66,5 +66,5 @@ document.querySelector("#btn-delete").addEventListener("click", async (event) =>
   if (!urlParams.has('id'))
     return;
   const postId = urlParams.get('id');
-  deletePost(postId);
+  await deletePost(postId);
 }, false);

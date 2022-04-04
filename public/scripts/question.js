@@ -1,9 +1,4 @@
-async function generateComments(postId, user) {
-  const commentsRes = await fetch(`/api/comment?postId=${postId}`);
-  if (!commentsRes.ok)
-    return;
-  const comments = await commentsRes.json();
-
+function generateComments(comments) {
   const commentSection = document.getElementById('comment-section-fieldset');
   if (comments.length > 0)
     commentSection.style.display = 'block';
@@ -15,7 +10,7 @@ async function generateComments(postId, user) {
           <p>${comment.body}</p>
         </div>
         <div class="comment-user">
-          <p>Answered ${new Date(comment.createdAt).toLocaleString()} by ${user?.fullName ?? 'Unknown'}</p>
+          <p>Answered ${new Date(comment.createdAt).toLocaleString()} by ${comment.user?.fullName ?? 'Unknown'}</p>
         </div>
       </li>
     `;
@@ -34,15 +29,13 @@ async function generateComments(postId, user) {
   if (!postRes.ok)
     return;
   const post = await postRes.json();
-  const userRes = await fetch(`/api/user/${post.userId}`);
-  const user = await userRes.json();
 
-  generateComments(postId, user); //Comments will be loaded asynchronously
+  generateComments(post.comments);
 
   const questionTitle = document.getElementById('question-title');
   questionTitle.textContent = post.title;
   const questionMetadata = document.getElementById('question-metadata');
-  questionMetadata.textContent = `Asked on ${new Date(post.createdAt).toLocaleString()} by ${user?.fullName ?? 'Unknown'}. Viewed ${post.views} times`;
+  questionMetadata.textContent = `Asked on ${new Date(post.createdAt).toLocaleString()} by ${post.user?.fullName ?? 'Unknown'}. Viewed ${post.views} times`;
   const questionBody = document.getElementById('post-body');
   questionBody.innerHTML = post.body;
 })();

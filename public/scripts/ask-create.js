@@ -5,16 +5,14 @@ async function createPost(title, body)
     return console.error('Title and Body must not be empty');
   const res = await fetch('/api/post', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       title,
       body
     }),
   });
   if (res.ok)
-    window.location.replace('/');
+    window.location.replace(window.location.origin);
   else
     alert('You must be logged in to do this.');
 }

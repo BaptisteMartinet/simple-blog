@@ -23,20 +23,18 @@ function generateControlsTemplate(postId)
 
   const postsContainer = document.querySelector('.postsContainer');
   for (post of posts) {
-    const userRes = await fetch(`/api/user/${post.userId}`);
-    const user = await userRes.json();
     const template = `
     <li>
       <div class="question">
         <div class="question-stats">
-          <p>${post.comments} answers</p>
+          <p>${post.comments.length} answers</p>
           <p>${post.views} views</p>
         </div>
         <div class="question-summary">
           <h1><a href="/question?id=${post._id}">${post.title}</a></h1>
           <div class="question-user">
-            ${post.userId === currentUser?._id ? generateControlsTemplate(post._id) : ''}
-            <p>${user?.fullName ?? 'Unknown'} asked ${timeSince(post.createdAt)} ago</p>
+            ${post.user?._id === currentUser?._id ? generateControlsTemplate(post._id) : ''}
+            <p>${post.user?.fullName ?? 'Unknown'} asked ${timeSince(post.createdAt)} ago</p>
           </div>
         </div>
       </div>
