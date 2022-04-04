@@ -1,14 +1,14 @@
 {
   "name": "blog-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "api/index.js",
+  "description": "A clone of stackunderflow made at Griffith College Dublin",
+  "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Baptiste Martinet",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
