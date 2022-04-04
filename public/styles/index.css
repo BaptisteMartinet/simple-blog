@@ -1,6 +1,6 @@
 .ask-container {
   width: 100%;
-  height: 10vh;
+  min-height: 10vh;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -13,7 +13,7 @@
   color: white;
   user-select: none;
   margin-right: 1em;
-  font-size: 1.1rem;
+  font-size: var(--fs-500);
   border: 1px solid transparent;
   border-radius: 3px;
   outline: none;
@@ -25,7 +25,6 @@
 
 .postsContainer {
   width: 100%;
-  min-width: 600px;
   border: 2px solid #d6d9dc;
   list-style: none;
   padding: 0;
@@ -45,31 +44,32 @@
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
-  width: 15%;
-  min-width: 80px;
+  flex-grow: 1;
+  padding: .5em;
 }
 
 .postsContainer > li > .question > .question-summary {
+  flex-grow: 6;
   display: flex;
-  justify-content: space-between;
+  flex-flow: row wrap;
+  justify-content: stretch;
   align-items: center;
   padding: 0 2em;
-  width: 100%;
 }
 
-.postsContainer > li > .question > .question-summary > h1 {
-  max-width: 22em;
+.postsContainer > li > .question > .question-summary > .title-container {
+  flex-grow: 4;
 }
 
-.postsContainer > li > .question > .question-summary > h1 > a {
+.postsContainer > li > .question > .question-summary > .title-container > h1 {
+  margin: 0;
+  font-size: var(--fs-800);
   color: #0074cc;
 }
 
 .postsContainer > li > .question > .question-summary > .question-user {
-  min-width: 250px;
-  width: 40%;
+  flex-grow: 1;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
 }
 

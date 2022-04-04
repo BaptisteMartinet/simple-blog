@@ -31,7 +31,9 @@ function generateControlsTemplate(postId)
           <p>${post.views} views</p>
         </div>
         <div class="question-summary">
-          <h1><a href="/question?id=${post._id}">${post.title}</a></h1>
+          <div class="title-container">
+            <h1><a href="/question?id=${post._id}">${post.title}</a></h1>
+          </div>
           <div class="question-user">
             ${post.user?._id === currentUser?._id ? generateControlsTemplate(post._id) : ''}
             <p>${post.user?.fullName ?? 'Unknown'} asked ${timeSince(post.createdAt)} ago</p>

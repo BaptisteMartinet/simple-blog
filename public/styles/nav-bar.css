@@ -13,20 +13,21 @@
 }
 
 .navBar > .searchBox {
-  margin: 0 3%;
+  padding: 0 3em;
   width: 35%;
 }
 
 .navBar > .searchBox > input[type=search] {
+  font-size: var(--fs-400);
   padding: .5em;
-  font-size: .9rem;
   width: 100%;
 }
 
 .navBar > #nav-authentification-btns > #login-btn {
   color: #39739d;
+  font-size: var(--fs-400);
   background-color: #e1ecf4;
-  padding: 0.8em;
+  padding: .6em 1em;
   border: 1px solid #7aa7c7;
   outline: none;
   text-decoration: none;
@@ -42,8 +43,9 @@
 
 .navBar > #nav-authentification-btns > #register-btn {
   color: white;
+  font-size: var(--fs-400);
   background-color: #0a95ff;
-  padding: 0.8em;
+  padding: .6em 1em;
   border: 1px solid transparent;
   outline: none;
   text-decoration: none;
@@ -58,9 +60,10 @@
 
 .navBar > #logout-btn {
   margin-left: 2em;
+  font-size: var(--fs-400);
   color: white;
   background-color: #bd0000;
-  padding: 0.8em 1em;
+  padding: .6em 1em;
   border: 1px solid transparent;
   outline: none;
   text-decoration: none;
