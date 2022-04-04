@@ -1,7 +1,7 @@
 {
   "name": "blog-api",
   "version": "1.0.0",
-  "description": "A clone of stackunderflow made at Griffith College Dublin",
+  "description": "A stack overflow clone made at Griffith College Dublin",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
