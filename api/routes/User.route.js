@@ -59,14 +59,14 @@ router.post('/register', async (req, res) => {
  */
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email }).select('+password');
   if (!user)
     return res.status(404).send(`User not found`);
   if (!bcrypt.compareSync(password, user.password))
     return res.status(400).send(`Invalid credentials`);
   const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET_KEY, { expiresIn: "24h" });
   res.cookie('x-access-token', token, { expires: new Date(Date.now() + 86400000), httpOnly: true });
-  return res.json(user);
+  return res.send('Successfully logged in.')
 });
 
 module.exports = router;
