@@ -29,12 +29,12 @@ router.post('/', auth, async (req, res) => {
   const post = await Post.findById(postId);
   if (!post)
     return res.status(404).send('Post does not exists');
-  await Comment.create({
-    postId,
+  const newComment = await Comment.create({
+    post: postId,
     user: userId,
     body,
   });
-  post.comments += 1;
+  post.comments.push(newComment.id);
   await post.save();
   return res.send('Comment successfully created.');
 });

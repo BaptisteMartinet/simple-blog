@@ -10,7 +10,17 @@ const { Post } = require('../models');
  */
 router.get('/', async (req, res) => {
   const { limit, searchTerm } = req.query;
-  const posts = await Post.find({}, null, { limit: limit ?? Infinity }).populate('user');
+  const posts = await Post.find({}, null, { limit: limit ?? Infinity }).populate([
+    {
+      path: 'user',
+      model: 'User'
+    },
+    {
+      path: 'comments',
+      model: 'Comment',
+      populate: { path: 'user', model: 'User' },
+    },
+  ]);
   res.json(posts);
 });
 
@@ -20,7 +30,14 @@ router.get('/', async (req, res) => {
  */
 router.get('/:id', async (req, res) => {
   const { id: postId } = req.params;
-  const post = await Post.findById(postId).populate('user');
+  const post = await Post.findById(postId).populate([
+    { path: 'user', model: 'User' },
+    {
+      path: 'comments',
+      model: 'Comment',
+      populate: { path: 'user', model: 'User' },
+    },
+  ]);
   if (!post)
     return res.status(404).send(`Post#${postId} does not exist.`);
   post.views += 1;

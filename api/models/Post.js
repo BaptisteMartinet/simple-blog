@@ -7,7 +7,7 @@ const PostSchema = new Schema({
   title: { type: String, required: true },
   body: { type: String, required: true },
   views: { type: Number, default: 0, required: true },
-  comments: { type: Number, default: 0, required: true },
+  comments: [{ type: ObjectId, ref: 'Comment', required: true }],
 }, { timestamps: true });
 
 const Post = mongoose.model('Post', PostSchema, 'posts');

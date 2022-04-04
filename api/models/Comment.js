@@ -3,7 +3,7 @@ const { Schema, Types } = mongoose;
 const { ObjectId } = Types;
 
 const CommentSchema = new Schema({
-  postId: { type:ObjectId, ref: 'Post', required: true },
+  post: { type: ObjectId, ref: 'Post', required: true },
   user: { type: ObjectId, ref: 'User', required: true },
   body: { type: String, required: true },
 }, { timestamps: true });
