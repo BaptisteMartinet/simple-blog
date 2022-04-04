@@ -5,6 +5,7 @@
   --fs-600: 1.5rem;
   --fs-500: 1.25rem;
   --fs-400: 1rem;
+  --fs-300: .75rem;
 }
 
 @media (max-width: 80em) {
@@ -15,17 +16,7 @@
     --fs-600: 1.25rem;
     --fs-500: 1rem;
     --fs-400: .75rem;
-  }
-}
-
-@media (max-width: 40em) {
-  :root {
-    --fs-xl: 2rem;
-    --fs-800: 1.50rem;
-    --fs-700: 1.25rem;
-    --fs-600: 1rem;
-    --fs-500: .75rem;
-    --fs-400: .50rem;
+    --fs-300: .5rem;
   }
 }
 
