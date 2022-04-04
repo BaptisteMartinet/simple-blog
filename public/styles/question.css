@@ -56,7 +56,7 @@
 
 .comment-form-container {
   width: 100%;
-  margin-top: 2em;
+  margin: 2em 0;
 }
 
 .comment-form-container > textarea {
