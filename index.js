@@ -15,7 +15,7 @@ const routes = require('./api/routes/router');
   const { DATABASE_URI, PORT, ENVIRONMENT } = process.env;
   if (!DATABASE_URI || !PORT)
     throw new Error('Missing DATABASE_NAME AND PORT environment variables.');
-  mongoose.set('debug', (ENVIRONMENT !== 'prod'));
+  mongoose.set('debug', (ENVIRONMENT === 'dev'));
   await mongoose.connect(DATABASE_URI);
   console.info('Database successfully connected.');
   const app = express();
