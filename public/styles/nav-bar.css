@@ -12,9 +12,26 @@
   z-index: 1;
 }
 
+.navBar > .nav-logo {
+  width: 180px;
+  height: 50px;
+  background-image: url('../images/logo_final.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+@media (max-width: 40em) {
+  .navBar > .nav-logo {
+    width: 32px;
+    height: 32px;
+    background-image: url('../images/logo_small.png');
+  }
+}
+
 .navBar > .searchBox {
   padding: 0 3em;
-  width: 35%;
+  width: 40%;
 }
 
 .navBar > .searchBox > input[type=search] {
