@@ -6,11 +6,14 @@ const { Post } = require('../models');
 /**
  * @description Return all the posts stored in DB
  * @param limit Limit the number of posts returned
- * @param searchTerm Filter posts with a search term
+ * @param searchTerm Filter posts with a search term (case insensitive)
  */
 router.get('/', async (req, res) => {
   const { limit, searchTerm } = req.query;
-  const posts = await Post.find({}, null, { limit: limit ?? Infinity }).populate([
+  const filter = {};
+  if (searchTerm)
+    filter['title'] = { $regex: searchTerm, $options: 'i' };
+  const posts = await Post.find(filter, null, { limit: limit ?? Infinity }).populate([
     {
       path: 'user',
       model: 'User'
