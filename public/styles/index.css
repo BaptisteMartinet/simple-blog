@@ -45,6 +45,7 @@
   align-items: center;
   width: 10%;
   padding: .2em;
+  text-align: center;
 }
 
 .postsContainer > li > .question > .question-summary {
