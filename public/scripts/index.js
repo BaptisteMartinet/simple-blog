@@ -11,6 +11,7 @@ function generateControlsTemplate(postId)
   const searchTerm = urlParams.get('searchTerm');
 
   const url = new URL('api/post', window.location.origin);
+  url.searchParams.append('limit', 10);
   if (searchTerm)
     url.searchParams.append('searchTerm', searchTerm);
   const postsRes = await fetch(url);
