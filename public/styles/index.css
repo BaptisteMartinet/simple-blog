@@ -56,7 +56,7 @@
 
 .postsContainer > li > .question > .question-summary > .title-container > h1 {
   margin: 0;
-  font-size: var(--fs-800);
+  font-size: var(--fs-600);
   color: #0074cc;
 }
 
