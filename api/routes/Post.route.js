@@ -5,15 +5,21 @@ const { Post } = require('../models');
 
 /**
  * @description Return all the posts stored in DB
+ * @param pageIdx Specify a page index
  * @param limit Limit the number of posts returned
  * @param searchTerm Filter posts with a search term (case insensitive)
  */
 router.get('/', async (req, res) => {
-  const { limit, searchTerm } = req.query;
+  const { pageIdx, limit, searchTerm } = req.query;
   const filter = {};
   if (searchTerm)
     filter['title'] = { $regex: searchTerm, $options: 'i' };
-  const posts = await Post.find(filter, null, { limit: limit ?? Infinity }).populate([
+  const options = {
+    sort: { createdAt: 'desc' },
+    limit: limit ?? Infinity,
+    ...(pageIdx && limit ? { skip: pageIdx * limit } : null),
+  };
+  const posts = await Post.find(filter, null, options).populate([
     {
       path: 'user',
       model: 'User'
