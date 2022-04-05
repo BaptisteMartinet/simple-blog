@@ -56,7 +56,7 @@ async function createComment(args) {
   if (res.ok)
     window.location.reload();
   else
-    alert('Something went wrong when creating comment.')
+    alert('You must be logged in to do this.')
 }
 
 document.querySelector('#btn-submit').addEventListener('click', (e) => {
