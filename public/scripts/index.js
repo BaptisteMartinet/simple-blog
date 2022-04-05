@@ -8,7 +8,7 @@ function generateControlsTemplate(postId)
 (async () => {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const searchTerm = urlParams.get('searchTerm');
+  const searchTerm = urlParams.get('search');
 
   const url = new URL('api/post', window.location.origin);
   url.searchParams.append('limit', 10);
