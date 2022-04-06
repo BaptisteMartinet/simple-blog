@@ -1,3 +1,6 @@
+/**
+ * @description Generate a list of comment previously loaded from the API
+ */
 function generateComments(comments) {
   const commentSection = document.getElementById('comment-section-fieldset');
   if (comments.length > 0)
@@ -18,6 +21,11 @@ function generateComments(comments) {
   }
 }
 
+/**
+ * @description The main function of the page.
+ * It gets the postId passed in the url
+ * and load the post with its comments.
+ */
 (async () => {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -40,6 +48,9 @@ function generateComments(comments) {
   questionBody.innerHTML = post.body;
 })();
 
+/**
+ * @description Call the API to create a new comment
+ */
 async function createComment(args) {
   if (!args.body)
     return;

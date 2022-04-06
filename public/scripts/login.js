@@ -1,3 +1,6 @@
+/**
+ * @description Send the log in form to the API
+ */
 async function login(args)
 {
   if (!args.email || !args.password)

@@ -1,4 +1,8 @@
-
+/**
+ * @description Entry point of the navbar script.
+ * It checks if the user is registered and displays
+ * the right button in the navbar accordingly.
+ */
 (async () => {
   const userNameDisplay = document.getElementById('nav-username-display');
   const authentificationBtns = document.getElementById('nav-authentification-btns');

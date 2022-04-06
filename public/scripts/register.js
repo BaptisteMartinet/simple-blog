@@ -1,4 +1,6 @@
-
+/**
+ * @description Call the API to register the user
+ */
 async function register(args)
 {
   if (!args.fullName || !args.email || !args.password)
