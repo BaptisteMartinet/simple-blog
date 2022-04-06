@@ -11,10 +11,10 @@ async function createPost(title, body)
       body
     }),
   });
-  if (res.ok)
-    window.location.replace(window.location.origin);
-  else
-    alert('You must be logged in to do this.');
+  if (!res.ok)
+    return alert('You must be logged in to do this.');
+  const post = await res.json();
+  window.location.replace(`/question?id=${post._id}`);
 }
 
 document.querySelector('#btn-submit').addEventListener('click', async (event) => {
