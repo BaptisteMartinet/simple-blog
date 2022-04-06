@@ -64,12 +64,12 @@ router.post('/', auth, async (req, res) => {
   const { title, body } = req.body;
   if (!title || !body)
     return res.status(400).send('Invalid parameters');
-  await Post.create({
+  const post = await Post.create({
     user: req.ctx.userId,
     title,
     body,
   });
-  res.send('Post succesfully created.');
+  res.json(post);
 });
 
 /**
