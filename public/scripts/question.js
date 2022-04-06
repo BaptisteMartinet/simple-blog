@@ -7,10 +7,11 @@ function generateComments(comments) {
     commentSection.style.display = 'block';
   const commentList = document.querySelector('.comments-container');
   for (const comment of comments) {
+    const commentBodyHTML = comment.body?.replace(/\n/g, '</br>');
     const commentTemplate = `
       <li class="comment-container">
         <div class="comment-body">
-          <p>${comment.body}</p>
+          <p>${commentBodyHTML}</p>
         </div>
         <div class="comment-user">
           <p>Answered ${new Date(comment.createdAt).toLocaleString()} by ${comment.user?.fullName ?? 'Unknown'}</p>
@@ -45,7 +46,8 @@ function generateComments(comments) {
   const questionMetadata = document.getElementById('question-metadata');
   questionMetadata.textContent = `Asked the ${new Date(post.createdAt).toLocaleString()} by ${post.user?.fullName ?? 'Unknown'}. Viewed ${post.views} times`;
   const questionBody = document.getElementById('post-body');
-  questionBody.innerHTML = post.body;
+  const questonBodyHTML = post.body?.replace(/\n/g, '</br>');
+  questionBody.innerHTML = questonBodyHTML;
 })();
 
 /**
