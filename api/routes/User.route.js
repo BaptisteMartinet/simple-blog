@@ -59,6 +59,8 @@ router.post('/register', async (req, res) => {
  */
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
+  if (!email || !password)
+    return res.status(400).send('Missing either email or password parameters');
   const user = await User.findOne({ email }, '+password');
   if (!user)
     return res.status(404).send(`User not found`);
