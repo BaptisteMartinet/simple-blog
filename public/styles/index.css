@@ -72,3 +72,14 @@
 .postsContainer > li > .question > .question-summary > .question-user > .question-update-control {
   margin-right: 1em;
 }
+
+.load-more-container {
+  width: 100%;
+  text-align: center;
+  margin: 2em 0;
+}
+
+.load-more-container > #load-more-btn {
+  font-size: var(--fs-400);
+  padding: .2em 1em;
+}

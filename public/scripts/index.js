@@ -1,27 +1,42 @@
-function generateControlsTemplate(postId)
-{
-  return `
-      <a href="/ask/update?id=${postId}" class="question-update-control"><i class="fa-solid fa-pen-to-square"></i></a>
-  `;
-}
+let currentUser = null;
+
+const urlParams = new URLSearchParams(window.location.search);
+const searchTerm = urlParams.get('search');
 
 (async () => {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const searchTerm = urlParams.get('search');
+  const resCurrentUser = await fetch('/api/currentUser');
+  if (resCurrentUser.ok)
+    currentUser = await resCurrentUser.json();
+  await loadNextPosts();
+})();
 
+
+document.querySelector('#load-more-btn').addEventListener('click', async () => {
+  await loadNextPosts();
+});
+
+let pageIdx = 0;
+const PostLimit = 10;
+
+async function loadNextPosts() {
   const url = new URL('api/post', window.location.origin);
-  url.searchParams.append('limit', 10);
+  url.searchParams.append('limit', PostLimit);
+  url.searchParams.append('pageIdx', pageIdx);
   if (searchTerm)
     url.searchParams.append('searchTerm', searchTerm);
   const postsRes = await fetch(url);
   if (!postsRes.ok)
     return;
-  const posts = await postsRes.json();
+  const { posts, totalNbPosts } = await postsRes.json();
+  generatePosts(posts);
 
-  const resCurrentUser = await fetch('/api/currentUser');
-  const currentUser = resCurrentUser.ok ? await resCurrentUser.json() : null;
+  // Disable "load more" button if there are no more posts to be loaded
+  if ((pageIdx * PostLimit + PostLimit) >= totalNbPosts)
+    document.querySelector('.load-more-container').style.display = 'none';
+  pageIdx += 1;
+}
 
+function generatePosts(posts) {
   const postsContainer = document.querySelector('.postsContainer');
   for (post of posts) {
     const template = `
@@ -45,4 +60,10 @@ function generateControlsTemplate(postId)
     `;
     postsContainer.innerHTML += template;
   }
-})();
+}
+
+function generateControlsTemplate(postId) {
+  return `
+      <a href="/ask/update?id=${postId}" class="question-update-control"><i class="fa-solid fa-pen-to-square"></i></a>
+  `;
+}
