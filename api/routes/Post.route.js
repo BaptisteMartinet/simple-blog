@@ -19,10 +19,11 @@ router.get('/', async (req, res) => {
     limit: limit ?? Infinity,
     ...(pageIdx && limit ? { skip: pageIdx * limit } : null),
   };
+  const totalNbPosts = await Post.count(filter);
   const posts = await Post.find(filter, null, options).populate([
     {
       path: 'user',
-      model: 'User'
+      model: 'User',
     },
     {
       path: 'comments',
@@ -30,7 +31,7 @@ router.get('/', async (req, res) => {
       populate: { path: 'user', model: 'User' },
     },
   ]);
-  res.json(posts);
+  res.json({ posts, totalNbPosts });
 });
 
 /**
