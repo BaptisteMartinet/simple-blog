@@ -37,7 +37,7 @@
 .question-form > #question-body {
   width: 100%;
   resize: vertical;
-  min-height: 20vh;
+  min-height: 35vh;
   padding: .5em;
   font-size: var(--fs-400);
 }
