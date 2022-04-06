@@ -46,6 +46,7 @@
   width: 10%;
   padding: .2em;
   text-align: center;
+  font-size: var(--fs-400);
 }
 
 .postsContainer > li > .question > .question-summary {
