@@ -75,6 +75,10 @@
   background-color: #0668b3;
 }
 
+.navBar > #nav-username-display {
+  font-size: 1.4rem;
+}
+
 .navBar > #logout-btn {
   margin-left: 2em;
   font-size: .9rem;
